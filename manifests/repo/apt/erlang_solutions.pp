@@ -9,7 +9,6 @@ class erlang::repo::apt::erlang_solutions (
   String $key_source  = 'https://packages.erlang-solutions.com/debian/erlang_solutions.asc',
   Optional[Variant[Numeric, String]] $pin = $erlang::package_apt_pin,
 ) inherits erlang {
-
   apt::source { 'erlang-erlang_solutions':
     ensure   => $ensure,
     location => $location,

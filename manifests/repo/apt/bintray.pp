@@ -9,7 +9,6 @@ class erlang::repo::apt::bintray (
   String $key_source  = 'https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc',
   Optional[Variant[Numeric, String]] $pin = $erlang::package_apt_pin,
 ) inherits erlang {
-
   apt::source { 'erlang-bintray':
     ensure   => $ensure,
     location => $location,
