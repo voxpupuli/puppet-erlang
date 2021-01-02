@@ -19,8 +19,10 @@
 # @param [String] package_ensure
 #   Determines the ensure state of the package.  Set to installed by default, but could be changed to latest.
 #
-# @param [Optional[Variant[Numeric, String]]] package_apt_pin
-#   Whether to pin the package to a particular source.
+# @param [Optional[Numeric]] package_apt_pin
+#   If set to a numeric value, pin the repo, with that value as the priority,
+#   (Debian/Ubuntu only). Default value is higher than the default (500) so
+#   that these packages take precedence over the default repos.
 #
 # @param [Boolean] manage_repo
 #   Whether or not this class should manage the erlang repository.
@@ -73,7 +75,7 @@
 class erlang (
   String  $package_name   = 'erlang',
   String  $package_ensure = 'installed',
-  Optional[Variant[Numeric, String]] $package_apt_pin = undef,
+  Numeric $package_apt_pin = 600,
   Boolean $manage_repo    = true,
   String  $repo_ensure    = 'present',
   Erlang::RepoSource $repo_source = 'packagecloud',

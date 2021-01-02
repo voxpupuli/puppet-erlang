@@ -21,6 +21,8 @@ describe 'erlang::repo::apt::bintray' do
                      'id'     => '0A9AF2115F4687BD29803A206B73A36E6026DFCA',
                      'source' => 'https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc'
                    })
+            is_expected.to contain_apt__pin('erlang-bintray').
+              with('priority' => 600)
           end
         end
       end

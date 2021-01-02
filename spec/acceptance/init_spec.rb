@@ -3,9 +3,11 @@ require 'spec_helper_acceptance'
 describe 'erlang init:' do
   case fact('os.family')
   when 'RedHat'
+    pkg_cmd = 'yum info erlang | grep "^From repo"'
     default_repo_source = 'packagecloud'
     repo_source_list = %w[bintray erlang_solutions packagecloud]
   when 'Debian'
+    pkg_cmd = 'dpkg -s erlang | grep ^Maintainer'
     default_repo_source = 'bintray'
     repo_source_list = %w[bintray erlang_solutions]
   end
@@ -23,6 +25,10 @@ describe 'erlang init:' do
 
       describe package('erlang') do
         it { is_expected.to be_installed }
+        it 'comes from the expected source' do
+          pkg_output = shell(pkg_cmd)
+          expect(pkg_output.stdout).to include default_repo_source
+        end
       end
       describe yumrepo("erlang-#{default_repo_source}") do
         it { is_expected.to exist }
@@ -44,6 +50,10 @@ describe 'erlang init:' do
 
       describe package('erlang') do
         it { is_expected.not_to be_installed }
+        it 'comes from the expected source' do
+          pkg_output = shell(pkg_cmd)
+          expect(pkg_output.stdout).to include default_repo_source
+        end
       end
       describe yumrepo("erlang-#{default_repo_source}") do
         it { is_expected.not_to exist }
@@ -65,6 +75,10 @@ describe 'erlang init:' do
 
         describe package('erlang') do
           it { is_expected.to be_installed }
+          it 'comes from the expected source' do
+            pkg_output = shell(pkg_cmd)
+            expect(pkg_output.stdout).to include repo_source
+          end
         end
         describe yumrepo("erlang-#{repo_source}") do
           it { is_expected.to exist }
@@ -107,6 +121,10 @@ describe 'erlang init:' do
 
         describe package('erlang') do
           it { is_expected.not_to be_installed }
+          it 'comes from the expected source' do
+            pkg_output = shell(pkg_cmd)
+            expect(pkg_output.stdout).to include repo_source
+          end
         end
         describe yumrepo("erlang-#{default_repo_source}") do
           it { is_expected.not_to exist }
@@ -126,6 +144,10 @@ describe 'erlang init:' do
 
       describe package('erlang') do
         it { is_expected.to be_installed }
+        it 'comes from the expected source' do
+          pkg_output = shell(pkg_cmd)
+          expect(pkg_output.stdout).to include 'epel'
+        end
       end
       describe yumrepo('epel') do
         it { is_expected.to exist }
@@ -168,6 +190,10 @@ describe 'erlang init:' do
 
       describe package('erlang') do
         it { is_expected.to be_installed }
+        it 'comes from the expected source' do
+          pkg_output = shell(pkg_cmd)
+          expect(pkg_output.stdout).to include default_repo_source
+        end
       end
     end
 
@@ -183,6 +209,10 @@ describe 'erlang init:' do
 
         describe package('erlang') do
           it { is_expected.to be_installed }
+          it 'comes from the expected source' do
+            pkg_output = shell(pkg_cmd)
+            expect(pkg_output.stdout).to include repo_source
+          end
         end
       end
 
