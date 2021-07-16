@@ -31,7 +31,8 @@
 # @param [Erlang::RepoSource] repo_source
 #   Determines what repository source should be configured for installing Erlang.
 #   For Debian/Ubuntu the choices for `repo_source` are:
-#    - `'erlang_solutions'`
+#    - `'erlang_solutions'` (default)
+#    - `'cloudsmith'`
 #
 #   For CentOS/RHEL the choices for `repo_source` are:
 #    - `'epel'`

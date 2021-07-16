@@ -2,12 +2,11 @@
 # This type defines the union of all possible options for both Apt and Yum repos.
 # However, each OS family has a different subset of requirements:
 # For Debian/Ubuntu the choices for `repo_source` are:
-#  - `'bintray'` (default)
-#  - `'erlang_solutions'`
+#  - `'erlang_solutions'` (default)
+#  - `'cloudsmith'`
 #
 # For CentOS/RHEL the choices for `repo_source` are:
-#  - `'bintray'`
 #  - `'epel'`
 #  - `'erlang_solutions'`
 #  - `'packagecloud'` (default)
-type Erlang::RepoSource = Enum['epel', 'erlang_solutions', 'packagecloud']
+type Erlang::RepoSource = Enum['cloudsmith', 'epel', 'erlang_solutions', 'packagecloud']
