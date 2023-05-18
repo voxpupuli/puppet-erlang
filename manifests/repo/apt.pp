@@ -7,6 +7,9 @@ class erlang::repo::apt (
     'erlang_solutions': {
       contain erlang::repo::apt::erlang_solutions
     }
+    'cloudsmith': {
+      contain erlang::repo::apt::cloudsmith
+    }
     default: {
       fail("Only 'erlang_solutions' repo_sources is supported for Apt repos, the following is not supported: ${source}")
     }

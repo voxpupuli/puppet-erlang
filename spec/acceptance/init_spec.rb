@@ -9,7 +9,7 @@ describe 'erlang init:' do
     repo_source_list = %w[erlang_solutions packagecloud]
   when 'Debian'
     default_repo_source = 'erlang_solutions'
-    repo_source_list = %w[erlang_solutions]
+    repo_source_list = %w[erlang_solutions cloudsmith]
   end
 
   case fact('os.family')
@@ -177,34 +177,55 @@ describe 'erlang init:' do
 
     repo_source_list.each do |repo_source|
       context "with repo source set to #{repo_source}" do
+        package_name = if fact('os.distro.codename') == 'bionic' && repo_source == 'cloudsmith'
+                         'erlang-base'
+                       else
+                         'erlang'
+                       end
+
         let(:pp) do
           <<-EOS
-          class { 'erlang': repo_source => '#{repo_source}' }
+          class { 'erlang': repo_source => '#{repo_source}', package_name => '#{package_name}' }
           EOS
         end
 
-        it_behaves_like 'an idempotent resource'
+        if fact('os.distro.codename') == 'stretch' && repo_source == 'cloudsmith'
+          it { expect(apply_manifest(pp, expect_failures: true).stderr).to match('cloudsmith does not support this debian release') }
+        else
+          it_behaves_like 'an idempotent resource'
 
-        describe package('erlang') do
-          it { is_expected.to be_installed }
+          describe package(package_name) do
+            it { is_expected.to be_installed }
+          end
         end
       end
 
       context "removing package and repo source: #{repo_source}" do
+        package_name = if fact('os.distro.codename') == 'bionic' && repo_source == 'cloudsmith'
+                         'erlang-base'
+                       else
+                         'erlang'
+                       end
+
         let(:pp) do
           <<-EOS
           class { 'erlang':
             package_ensure => 'absent',
+            package_name => '#{package_name}',
             repo_source => '#{repo_source}',
             repo_ensure => 'absent',
           }
           EOS
         end
 
-        it_behaves_like 'an idempotent resource'
+        if fact('os.distro.codename') == 'stretch' && repo_source == 'cloudsmith'
+          it { expect(apply_manifest(pp, expect_failures: true).stderr).to match('cloudsmith does not support this debian release') }
+        else
+          it_behaves_like 'an idempotent resource'
 
-        describe package('erlang') do
-          it { is_expected.not_to be_installed }
+          describe package(package_name) do
+            it { is_expected.not_to be_installed }
+          end
         end
       end
     end

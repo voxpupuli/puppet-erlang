@@ -9,12 +9,23 @@ describe 'erlang::repo::apt' do # rubocop:disable RSpec/EmptyExampleGroup
       context "on #{os}" do
         let(:facts) { facts }
 
-        it { is_expected.to compile.with_all_deps }
-
         context 'with source set to erlang_solutions' do
           let(:params) { { source: 'erlang_solutions' } }
 
+          it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('erlang::repo::apt::erlang_solutions') }
+        end
+
+        context 'with source set to cloudsmith' do # rubocop:disable RSpec/EmptyExampleGroup
+          let(:params) { { source: 'cloudsmith' } }
+
+          case facts[:os]['distro']['codename']
+          when 'stretch'
+            it { is_expected.to raise_error(Puppet::Error, %r{cloudsmith does not support this debian release}) }
+          else
+            it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_class('erlang::repo::apt::cloudsmith') }
+          end
         end
 
         context 'with source set to invalid' do
