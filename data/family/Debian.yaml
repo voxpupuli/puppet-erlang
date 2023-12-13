@@ -1,2 +1,3 @@
 ---
 erlang::repo_source: 'erlang_solutions'
+erlang::package_name: 'esl-erlang'

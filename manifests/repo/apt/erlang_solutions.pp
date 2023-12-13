@@ -1,12 +1,11 @@
 # erlang erlang_solutions apt repo
 class erlang::repo::apt::erlang_solutions (
   String $ensure = $erlang::repo::apt::ensure,
-  String $location    = 'https://packages.erlang-solutions.com/debian',
-  # trusty, xenial, bionic, etc
-  String $release     = downcase($facts['os']['distro']['codename']),
+  String $location    = "https://binaries2.erlang-solutions.com/${(downcase($facts['os']['distro']['id']))}",
+  String $release     = "${downcase($facts['os']['distro']['codename'])}-esl-erlang-25",
   String $repos       = 'contrib',
-  String $key         = '434975BD900CCBE4F7EE1B1ED208507CA14F4FCA',
-  String $key_source  = 'https://packages.erlang-solutions.com/debian/erlang_solutions.asc',
+  String $key         = '26F8ADE7441C97EBE03DFEEA218B8A806CEFF98B',
+  String $key_source  = 'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc',
   Optional[Variant[Numeric, String]] $pin = $erlang::package_apt_pin,
 ) inherits erlang {
   apt::source { 'erlang-erlang_solutions':
