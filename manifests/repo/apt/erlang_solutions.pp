@@ -1,4 +1,12 @@
 # erlang erlang_solutions apt repo
+#
+# @param ensure
+# @param location
+# @param release
+# @param repos
+# @param key
+# @param key_source
+# @param pin
 class erlang::repo::apt::erlang_solutions (
   String $ensure = $erlang::repo::apt::ensure,
   String $location    = "https://binaries2.erlang-solutions.com/${(downcase($facts['os']['distro']['id']))}",
