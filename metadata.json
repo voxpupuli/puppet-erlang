@@ -31,12 +31,6 @@
         "18.04",
         "20.04"
       ]
-    },
-    {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "10"
-      ]
     }
   ],
   "requirements": [
