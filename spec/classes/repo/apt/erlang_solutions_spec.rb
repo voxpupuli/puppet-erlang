@@ -21,7 +21,7 @@ describe 'erlang::repo::apt::erlang_solutions' do # rubocop:disable RSpec/EmptyE
                    'repos' => 'contrib',
                    'key' => {
                      'id' => '26F8ADE7441C97EBE03DFEEA218B8A806CEFF98B',
-                     'source' => 'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.as'
+                     'source' => 'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc'
                    })
           end
         end
