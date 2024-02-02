@@ -1,4 +1,8 @@
 # Erlang packagecloud yum repo
+#
+# @param ensure
+# @param baseurl
+# @param gpgkey
 class erlang::repo::yum::packagecloud (
   String $ensure  = $erlang::repo::yum::ensure,
   String $baseurl = "https://packagecloud.io/rabbitmq/erlang/el/${$facts['os']['release']['major']}/\$basearch",

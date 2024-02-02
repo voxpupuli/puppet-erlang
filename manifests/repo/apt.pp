@@ -1,4 +1,7 @@
 # erlang apt repo
+#
+# @param ensure
+# @param source
 class erlang::repo::apt (
   String  $ensure = $erlang::repo_ensure,
   Erlang::RepoSource $source = $erlang::repo_source,

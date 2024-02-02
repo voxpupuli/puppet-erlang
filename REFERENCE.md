@@ -196,7 +196,7 @@ Data type: `String`
 
 
 
-Default value: `'https://packages.erlang-solutions.com/debian'`
+Default value: `"https://binaries2.erlang-solutions.com/${(downcase($facts['os']['distro']['id']))}"`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--release"></a>`release`
 
@@ -204,7 +204,7 @@ Data type: `String`
 
 
 
-Default value: `downcase($facts['os']['distro']['codename'])`
+Default value: `"${downcase($facts['os']['distro']['codename'])}-esl-erlang-25"`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--repos"></a>`repos`
 
@@ -220,7 +220,7 @@ Data type: `String`
 
 
 
-Default value: `'434975BD900CCBE4F7EE1B1ED208507CA14F4FCA'`
+Default value: `'26F8ADE7441C97EBE03DFEEA218B8A806CEFF98B'`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--key_source"></a>`key_source`
 
@@ -228,7 +228,7 @@ Data type: `String`
 
 
 
-Default value: `'https://packages.erlang-solutions.com/debian/erlang_solutions.asc'`
+Default value: `'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc'`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--pin"></a>`pin`
 

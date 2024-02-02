@@ -1,4 +1,8 @@
 # Erlang packagecloud yum repo
+#
+# @param ensure
+# @param baseurl
+# @param gpgkey
 class erlang::repo::yum::erlang_solutions (
   String $ensure  = $erlang::repo::yum::ensure,
   String $baseurl = "https://packages.erlang-solutions.com/rpm/centos/\$releasever/\$basearch",

@@ -170,7 +170,7 @@ describe 'erlang init:' do
 
       it_behaves_like 'an idempotent resource'
 
-      describe package('erlang') do
+      describe package('esl-erlang') do
         it { is_expected.to be_installed }
       end
     end
@@ -185,7 +185,7 @@ describe 'erlang init:' do
 
         it_behaves_like 'an idempotent resource'
 
-        describe package('erlang') do
+        describe package('esl-erlang') do
           it { is_expected.to be_installed }
         end
       end
@@ -203,7 +203,7 @@ describe 'erlang init:' do
 
         it_behaves_like 'an idempotent resource'
 
-        describe package('erlang') do
+        describe package('esl-erlang') do
           it { is_expected.not_to be_installed }
         end
       end
