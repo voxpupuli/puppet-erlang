@@ -9,7 +9,7 @@ describe 'erlang::repo::apt::erlang_solutions' do # rubocop:disable RSpec/EmptyE
       context "on #{os}" do
         let(:facts) { facts }
         let(:release) { facts[:os]['distro']['codename'] }
-        let(:name) { facts[:os]['name'] }
+        let(:name) { facts[:os]['name'].downcase }
 
         it { is_expected.to compile.with_all_deps }
 
