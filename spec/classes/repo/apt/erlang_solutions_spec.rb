@@ -9,6 +9,7 @@ describe 'erlang::repo::apt::erlang_solutions' do # rubocop:disable RSpec/EmptyE
       context "on #{os}" do
         let(:facts) { facts }
         let(:release) { facts[:os]['distro']['codename'] }
+        let(:name) { facts[:os]['name'] }
 
         it { is_expected.to compile.with_all_deps }
 
@@ -16,7 +17,7 @@ describe 'erlang::repo::apt::erlang_solutions' do # rubocop:disable RSpec/EmptyE
           it do
             is_expected.to contain_apt__source('erlang-erlang_solutions').
               with('ensure' => 'present',
-                   'location' => 'https://binaries2.erlang-solutions.com/debian',
+                   'location' => "https://binaries2.erlang-solutions.com/#{name}",
                    'release' => "#{release}-esl-erlang-25",
                    'repos' => 'contrib',
                    'key' => {
