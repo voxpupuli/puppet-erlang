@@ -30,6 +30,10 @@ class erlang::repo::yum (
       }
     }
     'packagecloud': {
+      # include epel instead of contain because lots of other stuff declares epel
+      include epel
+      # specifically declare dependency on epel repo
+      Class['epel'] -> Package[$erlang::package_name]
       yumrepo { 'erlang-packagecloud':
         ensure        => $ensure,
         name          => 'erlang-packagecloud',
