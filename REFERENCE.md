@@ -8,12 +8,7 @@
 
 * [`erlang`](#erlang): Manages the Erlang repository and package installation.
 * [`erlang::repo`](#erlang--repo): Class that manages the erlang repo
-* [`erlang::repo::apt`](#erlang--repo--apt): erlang apt repo
-* [`erlang::repo::apt::erlang_solutions`](#erlang--repo--apt--erlang_solutions): erlang erlang_solutions apt repo
 * [`erlang::repo::yum`](#erlang--repo--yum): erlang yum repo
-* [`erlang::repo::yum::epel`](#erlang--repo--yum--epel): Erlang packagecloud yum repo
-* [`erlang::repo::yum::erlang_solutions`](#erlang--repo--yum--erlang_solutions): Erlang packagecloud yum repo
-* [`erlang::repo::yum::packagecloud`](#erlang--repo--yum--packagecloud): Erlang packagecloud yum repo
 
 ### Data types
 
@@ -90,7 +85,7 @@ Default value: `'erlang'`
 
 ##### <a name="-erlang--package_ensure"></a>`package_ensure`
 
-Data type: `String`
+Data type: `Stdlib::Ensure::Package`
 
 Determines the ensure state of the package.  Set to installed by default, but could be changed to latest.
 
@@ -114,7 +109,7 @@ Default value: `true`
 
 ##### <a name="-erlang--repo_ensure"></a>`repo_ensure`
 
-Data type: `String`
+Data type: `Enum['present','absent']`
 
 Determines the ensure state of the repo.
 
@@ -139,105 +134,6 @@ Default value: `'packagecloud'`
 
 Class that manages the erlang repo
 
-### <a name="erlang--repo--apt"></a>`erlang::repo::apt`
-
-erlang apt repo
-
-#### Parameters
-
-The following parameters are available in the `erlang::repo::apt` class:
-
-* [`ensure`](#-erlang--repo--apt--ensure)
-* [`source`](#-erlang--repo--apt--source)
-
-##### <a name="-erlang--repo--apt--ensure"></a>`ensure`
-
-Data type: `String`
-
-
-
-Default value: `$erlang::repo_ensure`
-
-##### <a name="-erlang--repo--apt--source"></a>`source`
-
-Data type: `Erlang::RepoSource`
-
-
-
-Default value: `$erlang::repo_source`
-
-### <a name="erlang--repo--apt--erlang_solutions"></a>`erlang::repo::apt::erlang_solutions`
-
-erlang erlang_solutions apt repo
-
-#### Parameters
-
-The following parameters are available in the `erlang::repo::apt::erlang_solutions` class:
-
-* [`ensure`](#-erlang--repo--apt--erlang_solutions--ensure)
-* [`location`](#-erlang--repo--apt--erlang_solutions--location)
-* [`release`](#-erlang--repo--apt--erlang_solutions--release)
-* [`repos`](#-erlang--repo--apt--erlang_solutions--repos)
-* [`key`](#-erlang--repo--apt--erlang_solutions--key)
-* [`key_source`](#-erlang--repo--apt--erlang_solutions--key_source)
-* [`pin`](#-erlang--repo--apt--erlang_solutions--pin)
-
-##### <a name="-erlang--repo--apt--erlang_solutions--ensure"></a>`ensure`
-
-Data type: `String`
-
-
-
-Default value: `$erlang::repo::apt::ensure`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--location"></a>`location`
-
-Data type: `String`
-
-
-
-Default value: `'https://packages.erlang-solutions.com/debian'`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--release"></a>`release`
-
-Data type: `String`
-
-
-
-Default value: `downcase($facts['os']['distro']['codename'])`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--repos"></a>`repos`
-
-Data type: `String`
-
-
-
-Default value: `'contrib'`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--key"></a>`key`
-
-Data type: `String`
-
-
-
-Default value: `'434975BD900CCBE4F7EE1B1ED208507CA14F4FCA'`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--key_source"></a>`key_source`
-
-Data type: `String`
-
-
-
-Default value: `'https://packages.erlang-solutions.com/debian/erlang_solutions.asc'`
-
-##### <a name="-erlang--repo--apt--erlang_solutions--pin"></a>`pin`
-
-Data type: `Optional[Variant[Numeric, String]]`
-
-
-
-Default value: `$erlang::package_apt_pin`
-
 ### <a name="erlang--repo--yum"></a>`erlang::repo::yum`
 
 erlang yum repo
@@ -248,10 +144,14 @@ The following parameters are available in the `erlang::repo::yum` class:
 
 * [`ensure`](#-erlang--repo--yum--ensure)
 * [`source`](#-erlang--repo--yum--source)
+* [`erlang_solutions_baseurl`](#-erlang--repo--yum--erlang_solutions_baseurl)
+* [`erlang_solutions_gpgkey`](#-erlang--repo--yum--erlang_solutions_gpgkey)
+* [`packagecloud_baseurl`](#-erlang--repo--yum--packagecloud_baseurl)
+* [`packagecloud_gpgkey`](#-erlang--repo--yum--packagecloud_gpgkey)
 
 ##### <a name="-erlang--repo--yum--ensure"></a>`ensure`
 
-Data type: `String`
+Data type: `Enum['absent','present']`
 
 
 
@@ -265,77 +165,33 @@ Data type: `Erlang::RepoSource`
 
 Default value: `$erlang::repo_source`
 
-### <a name="erlang--repo--yum--epel"></a>`erlang::repo::yum::epel`
+##### <a name="-erlang--repo--yum--erlang_solutions_baseurl"></a>`erlang_solutions_baseurl`
 
-Erlang packagecloud yum repo
-
-### <a name="erlang--repo--yum--erlang_solutions"></a>`erlang::repo::yum::erlang_solutions`
-
-Erlang packagecloud yum repo
-
-#### Parameters
-
-The following parameters are available in the `erlang::repo::yum::erlang_solutions` class:
-
-* [`ensure`](#-erlang--repo--yum--erlang_solutions--ensure)
-* [`baseurl`](#-erlang--repo--yum--erlang_solutions--baseurl)
-* [`gpgkey`](#-erlang--repo--yum--erlang_solutions--gpgkey)
-
-##### <a name="-erlang--repo--yum--erlang_solutions--ensure"></a>`ensure`
-
-Data type: `String`
-
-
-
-Default value: `$erlang::repo::yum::ensure`
-
-##### <a name="-erlang--repo--yum--erlang_solutions--baseurl"></a>`baseurl`
-
-Data type: `String`
+Data type: `Variant[Stdlib::HTTPSUrl,Enum['absent']]`
 
 
 
 Default value: `"https://packages.erlang-solutions.com/rpm/centos/\$releasever/\$basearch"`
 
-##### <a name="-erlang--repo--yum--erlang_solutions--gpgkey"></a>`gpgkey`
+##### <a name="-erlang--repo--yum--erlang_solutions_gpgkey"></a>`erlang_solutions_gpgkey`
 
-Data type: `String`
+Data type: `Variant[Stdlib::HTTPSUrl,Enum['absent']]`
 
 
 
 Default value: `'https://packages.erlang-solutions.com/rpm/erlang_solutions.asc'`
 
-### <a name="erlang--repo--yum--packagecloud"></a>`erlang::repo::yum::packagecloud`
+##### <a name="-erlang--repo--yum--packagecloud_baseurl"></a>`packagecloud_baseurl`
 
-Erlang packagecloud yum repo
-
-#### Parameters
-
-The following parameters are available in the `erlang::repo::yum::packagecloud` class:
-
-* [`ensure`](#-erlang--repo--yum--packagecloud--ensure)
-* [`baseurl`](#-erlang--repo--yum--packagecloud--baseurl)
-* [`gpgkey`](#-erlang--repo--yum--packagecloud--gpgkey)
-
-##### <a name="-erlang--repo--yum--packagecloud--ensure"></a>`ensure`
-
-Data type: `String`
-
-
-
-Default value: `$erlang::repo::yum::ensure`
-
-##### <a name="-erlang--repo--yum--packagecloud--baseurl"></a>`baseurl`
-
-Data type: `String`
+Data type: `Variant[Stdlib::HTTPSUrl,Enum['absent']]`
 
 
 
 Default value: `"https://packagecloud.io/rabbitmq/erlang/el/${$facts['os']['release']['major']}/\$basearch"`
 
-##### <a name="-erlang--repo--yum--packagecloud--gpgkey"></a>`gpgkey`
+##### <a name="-erlang--repo--yum--packagecloud_gpgkey"></a>`packagecloud_gpgkey`
 
-Data type: `String`
+Data type: `Variant[Stdlib::HTTPSUrl,Enum['absent']]`
 
 
 

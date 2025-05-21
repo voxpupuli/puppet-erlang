@@ -59,10 +59,10 @@
 #
 class erlang (
   String  $package_name   = 'erlang',
-  String  $package_ensure = 'installed',
+  Stdlib::Ensure::Package $package_ensure = 'installed',
   Optional[Variant[Numeric, String]] $package_apt_pin = undef,
-  Boolean $manage_repo    = true,
-  String  $repo_ensure    = 'present',
+  Boolean $manage_repo = true,
+  Enum['present','absent'] $repo_ensure    = 'present',
   Erlang::RepoSource $repo_source = 'packagecloud',
 ) {
   if $manage_repo {

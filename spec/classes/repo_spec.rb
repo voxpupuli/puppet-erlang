@@ -10,8 +10,6 @@ describe 'erlang::repo' do
       it { is_expected.to compile.with_all_deps }
 
       case facts[:os]['family']
-      when 'Debian'
-        it { is_expected.to contain_class('erlang::repo::apt') }
       when 'RedHat'
         it { is_expected.to contain_class('erlang::repo::yum') }
       end
