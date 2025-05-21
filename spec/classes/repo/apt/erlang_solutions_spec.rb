@@ -20,8 +20,8 @@ describe 'erlang::repo::apt::erlang_solutions' do # rubocop:disable RSpec/EmptyE
                    'release' => release,
                    'repos' => 'contrib',
                    'key' => {
-                     'id' => '434975BD900CCBE4F7EE1B1ED208507CA14F4FCA',
-                     'source' => 'https://packages.erlang-solutions.com/debian/erlang_solutions.asc'
+                     'id' => 'A476FFB0288ADC13FE8B91A7708D410964E7272E',
+                     'source' => 'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc'
                    })
           end
         end

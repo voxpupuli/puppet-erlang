@@ -220,7 +220,7 @@ Data type: `String`
 
 
 
-Default value: `'434975BD900CCBE4F7EE1B1ED208507CA14F4FCA'`
+Default value: `'A476FFB0288ADC13FE8B91A7708D410964E7272E'`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--key_source"></a>`key_source`
 
@@ -228,7 +228,7 @@ Data type: `String`
 
 
 
-Default value: `'https://packages.erlang-solutions.com/debian/erlang_solutions.asc'`
+Default value: `'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc'`
 
 ##### <a name="-erlang--repo--apt--erlang_solutions--pin"></a>`pin`
 

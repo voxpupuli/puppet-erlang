@@ -5,8 +5,8 @@ class erlang::repo::apt::erlang_solutions (
   # trusty, xenial, bionic, etc
   String $release     = downcase($facts['os']['distro']['codename']),
   String $repos       = 'contrib',
-  String $key         = '434975BD900CCBE4F7EE1B1ED208507CA14F4FCA',
-  String $key_source  = 'https://packages.erlang-solutions.com/debian/erlang_solutions.asc',
+  String $key         = 'A476FFB0288ADC13FE8B91A7708D410964E7272E',
+  String $key_source  = 'https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc',
   Optional[Variant[Numeric, String]] $pin = $erlang::package_apt_pin,
 ) inherits erlang {
   apt::source { 'erlang-erlang_solutions':
