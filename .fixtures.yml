@@ -1,5 +1,4 @@
 ---
-# Fixtures file for puppet_spec_helper in the task: rake spec
 fixtures:
   repositories:
     apt: https://github.com/puppetlabs/puppetlabs-apt
