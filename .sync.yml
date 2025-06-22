@@ -6,3 +6,7 @@ spec/spec_helper.rb:
 .puppet-lint.rc:
   enabled_lint_checks:
     - parameter_types
+Gemfile:
+  optional:
+    ':test':
+      - gem: 'mocha'
