@@ -2,11 +2,6 @@
 spec/spec_helper.rb:
   allow_deprecations: true
   spec_overrides: "require 'spec_helper_local'"
-  mock_with: ':mocha'
 .puppet-lint.rc:
   enabled_lint_checks:
     - parameter_types
-Gemfile:
-  optional:
-    ':test':
-      - gem: 'mocha'
