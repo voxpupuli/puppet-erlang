@@ -13,10 +13,10 @@ describe 'erlang' do
         it { is_expected.to contain_class('erlang::repo') }
 
         it do
-          is_expected.to contain_package('erlang').
-            with_ensure('installed').
-            with_name('erlang').
-            that_requires('Class[erlang::repo]')
+          is_expected.to contain_package('erlang')
+            .with_ensure('installed')
+            .with_name('erlang')
+            .that_requires('Class[erlang::repo]')
         end
       end
 
@@ -24,7 +24,7 @@ describe 'erlang' do
         let(:params) do
           {
             package_name: 'erlang-custom',
-            package_ensure: 'present'
+            package_ensure: 'present',
           }
         end
 
