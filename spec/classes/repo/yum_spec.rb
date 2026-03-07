@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'erlang::repo::yum' do # rubocop:disable RSpec/EmptyExampleGroup
+describe 'erlang::repo::yum' do
   on_supported_os.each do |os, facts|
     case facts[:os]['family']
     when 'RedHat'
@@ -13,14 +13,14 @@ describe 'erlang::repo::yum' do # rubocop:disable RSpec/EmptyExampleGroup
 
         context 'with default parameters' do
           it do
-            is_expected.to contain_yumrepo('erlang-packagecloud').
-              with('ensure' => 'present',
-                   'name' => 'erlang-packagecloud',
-                   'baseurl' => "https://packagecloud.io/rabbitmq/erlang/el/#{facts[:os]['release']['major']}/$basearch",
-                   'enabled' => '1',
-                   'gpgcheck' => '0',
-                   'repo_gpgcheck' => '1',
-                   'gpgkey' => 'https://packagecloud.io/rabbitmq/erlang/gpgkey')
+            is_expected.to contain_yumrepo('erlang-packagecloud')
+              .with('ensure' => 'present',
+                    'name' => 'erlang-packagecloud',
+                    'baseurl' => "https://packagecloud.io/rabbitmq/erlang/el/#{facts[:os]['release']['major']}/$basearch",
+                    'enabled' => '1',
+                    'gpgcheck' => '0',
+                    'repo_gpgcheck' => '1',
+                    'gpgkey' => 'https://packagecloud.io/rabbitmq/erlang/gpgkey')
           end
         end
 
@@ -38,13 +38,13 @@ describe 'erlang::repo::yum' do # rubocop:disable RSpec/EmptyExampleGroup
 
           context 'with default parameters' do
             it do
-              is_expected.to contain_yumrepo('erlang-erlang_solutions').
-                with('ensure' => 'present',
-                     'name' => 'erlang-erlang_solutions',
-                     'baseurl' => 'https://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch',
-                     'enabled' => '1',
-                     'gpgcheck' => '1',
-                     'gpgkey' => 'https://packages.erlang-solutions.com/rpm/erlang_solutions.asc')
+              is_expected.to contain_yumrepo('erlang-erlang_solutions')
+                .with('ensure' => 'present',
+                      'name' => 'erlang-erlang_solutions',
+                      'baseurl' => 'https://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch',
+                      'enabled' => '1',
+                      'gpgcheck' => '1',
+                      'gpgkey' => 'https://packages.erlang-solutions.com/rpm/erlang_solutions.asc')
             end
           end
         end
@@ -56,14 +56,14 @@ describe 'erlang::repo::yum' do # rubocop:disable RSpec/EmptyExampleGroup
 
           context 'with default parameters' do
             it do
-              is_expected.to contain_yumrepo('erlang-packagecloud').
-                with('ensure' => 'present',
-                     'name' => 'erlang-packagecloud',
-                     'baseurl' => "https://packagecloud.io/rabbitmq/erlang/el/#{facts[:os]['release']['major']}/$basearch",
-                     'enabled' => '1',
-                     'gpgcheck' => '0',
-                     'repo_gpgcheck' => '1',
-                     'gpgkey' => 'https://packagecloud.io/rabbitmq/erlang/gpgkey')
+              is_expected.to contain_yumrepo('erlang-packagecloud')
+                .with('ensure' => 'present',
+                      'name' => 'erlang-packagecloud',
+                      'baseurl' => "https://packagecloud.io/rabbitmq/erlang/el/#{facts[:os]['release']['major']}/$basearch",
+                      'enabled' => '1',
+                      'gpgcheck' => '0',
+                      'repo_gpgcheck' => '1',
+                      'gpgkey' => 'https://packagecloud.io/rabbitmq/erlang/gpgkey')
             end
           end
         end
