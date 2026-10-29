@@ -215,4 +215,3 @@ For CentOS/RHEL the choices for `repo_source` are:
  - `'packagecloud'` (default)
 
 Alias of `Enum['epel', 'erlang_solutions', 'packagecloud']`
-
